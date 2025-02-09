@@ -9,6 +9,7 @@ BLOCK_SIZE = AES.block_size
 # Generate a random AES key
 key = os.urandom(BLOCK_SIZE)
 
+# This function is usually on the server side
 def oracle_encrypt(plaintext):
     """
     Encrypts the given plaintext using AES-128-CBC mode with PKCS#7 padding.
@@ -23,6 +24,7 @@ def oracle_encrypt(plaintext):
     ciphertext = cipher.encrypt(pad(plaintext, BLOCK_SIZE))
     return cipher.iv, ciphertext
 
+# This function is usually on the server side
 def oracle_decrypt(iv, ciphertext):
     """
     Decrypts the given ciphertext using AES-128-CBC mode.
