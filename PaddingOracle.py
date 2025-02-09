@@ -39,6 +39,7 @@ def oracle_decrypt(iv, ciphertext):
     cipher = AES.new(key, AES.MODE_CBC, iv)
     return cipher.decrypt(ciphertext)
 
+# User or attacker side function
 def check_padding(decrypt_func, iv, ciphertext):
     """
     Checks if the decrypted text has valid PKCS#7 padding.
@@ -58,6 +59,7 @@ def check_padding(decrypt_func, iv, ciphertext):
     except ValueError:
         return False
 
+# User or attacker side function
 def attack_block(ciphertext_block, check_padding_func, decrypt_func):
     """
     Performs a padding oracle attack on a single ciphertext block.
@@ -97,6 +99,7 @@ def attack_block(ciphertext_block, check_padding_func, decrypt_func):
 
     return decrypted_block
 
+# User or attacker side function
 def attack_ciphertext(iv, ciphertext, check_padding_func, decrypt_func):
     """
     Performs a full padding oracle attack to decrypt an AES-CBC encrypted message.
